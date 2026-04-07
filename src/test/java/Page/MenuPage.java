@@ -25,7 +25,7 @@ public class MenuPage {
 
     //mapear locator
 
-    @FindBy (linkText = "Datos") private WebElement GenerarTarjeta;
+    @FindBy (linkText = "Generate Card Number") private WebElement GenerarTarjeta;
     @FindBy (linkText = "Cart") private WebElement carrito;
     @FindBy (linkText = "Check Credit Card Limit") private WebElement CheckBalance;
     @FindBy (linkText = "Guru99 Payment Gateway") private WebElement Home;
@@ -34,10 +34,26 @@ public class MenuPage {
 
     public void ClickGenerarTarjeta(){
 
-        wait.until(ExpectedConditions.visibilityOf(GenerarTarjeta));
+        wait.until(ExpectedConditions.elementToBeClickable(GenerarTarjeta));
         GenerarTarjeta.click();
     }
 
+    public void ClickCarrito(){
+        wait.until(ExpectedConditions.elementToBeClickable(carrito));
+        carrito.click();
 
+    }
+
+    public void ClickCheckBalance(){
+        wait.until(ExpectedConditions.elementToBeClickable(CheckBalance));
+        CheckBalance.click();
+
+    }
+
+    public void ClickCheckHome(){
+        wait.until(ExpectedConditions.elementToBeClickable(Home));
+        Home.click();
+
+    }
 
 }

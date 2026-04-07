@@ -10,14 +10,22 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.openqa.selenium.WebDriver;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.nio.Buffer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
 public class FormularioDefinitions {
 
     WebDriver hooks = Hooks.driver;
+    String ruta="src/test/resources/Data/data.csv";
     //llamamos la clase a utilizar
     PageTexto texto;
     PageClick click;
@@ -113,6 +121,7 @@ public class FormularioDefinitions {
 
     @Then("se muestra un pop up con el mensaje")
     public void seMuestraUnPopUpConElMensaje() {
+
         texto.mostrarPopup();
     }
 
@@ -159,7 +168,8 @@ texto.apellidoModal();
 
     @When("Ingreso el campo nombre {string}")
     public void ingresoElCampoNombre(String nombre) {
-      texto.ingresarNombre(nombre);
+
+        texto.ingresarNombre(nombre);
     }
 
     @And("Ingreso el campo apellido {string}")
@@ -248,6 +258,16 @@ texto.apellidoModal();
             texto.validarApellido(lista.get(i).get("apellido"));
 
         }
+
+    }
+
+    @When("ingreso los datos del formulario desde el archivo CSV")
+    public void ingresoLosDatosDelFormularioDesdeElArchivoCSV() throws Exception {
+        BufferedReader leerArchivo= Files.newBufferedReader(Paths.get(ruta));
+        CSVFormat formato = CSVFormat.DEFAULT.withHeader("nombre","apellido")
+                .withSkipHeaderRecord()
+                .withTrim();
+        Iterable<CSVRecord> registro = formato.parse(leerArchivo);
 
     }
 }

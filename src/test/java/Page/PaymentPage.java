@@ -4,14 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class FormularioPagoPage {
+public class PaymentPage {
     //declarar variables driver y wait para usarla en toda la clase.
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public FormularioPagoPage(WebDriver d) {
+    public PaymentPage(WebDriver d) {
         //instanciar el driver y el wait
         driver = d;
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
@@ -19,7 +20,15 @@ public class FormularioPagoPage {
     }
 
     //declar localizadores
-    @FindBy(tagName = "h3") private WebElement precioProducto;
-    @FindBy(name = "quantity") private WebElement selectCantidad;
-    @FindBy(xpath = "//*[@type=\"submit\"]") private WebElement botonCompra;
+    @FindBy(tagName = "h2") private WebElement txtPagoExitoso;
+    @FindBy(xpath = "//td[2]/h3/strong") private WebElement txtOrder;
+    @FindBy(linkText = "Home") private WebElement btnHome;
+
+    //crear metodos
+
+    public void  CapturarTxtPagoExitoso(){
+        wait.until(ExpectedConditions.visibilityOf(txtPagoExitoso));
+        txtPagoExitoso.isDisplayed();
+        System.out.println("el valo es " + txtPagoExitoso);
+    }
 }
