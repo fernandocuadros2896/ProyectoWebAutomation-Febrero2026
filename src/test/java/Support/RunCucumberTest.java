@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
         monochrome = true
 )
 
-public class runTest {
+public class RunCucumberTest {
         @AfterClass
         public static void finish() {
                 try {

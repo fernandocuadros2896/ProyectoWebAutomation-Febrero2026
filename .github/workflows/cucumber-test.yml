@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: write   # 🔑 Necesario para gh-pages
 
 jobs:
   cucumber-tests:
@@ -14,34 +14,47 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
+      # -----------------------------
+      # JAVA
+      # -----------------------------
       - name: Set up JDK
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '20'
           distribution: 'temurin'
-          cache: maven
 
+      # -----------------------------
+      # NODE (CLAVE)
+      # -----------------------------
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
-      - name: Install Node dependencies
-        run: npm ci
-
+      # -----------------------------
+      # TESTS
+      # -----------------------------
       - name: Run Selenium Cucumber tests
         run: mvn clean test
         continue-on-error: true
 
+      # -----------------------------
+      # REPORT
+      # -----------------------------
+      - name: Install Node dependencies (CI safe)
+        run: npm ci
+
       - name: Generate Cucumber HTML Report
         run: node index.js
 
+      # -----------------------------
+      # DEPLOY TO GITHUB PAGES
+      # -----------------------------
       - name: Deploy report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: target/cucumber-html-report
-          force_orphan: true
+          force_orphan: true   #LIMPIA TODO Y SOLO SUBE EL REPORTE
