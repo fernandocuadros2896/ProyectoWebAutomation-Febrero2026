@@ -1,5 +1,6 @@
 package Support;
 
+
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.AfterClass;
@@ -7,14 +8,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/Feature",
-        glue = "StepDefinitions",
+        features ="src/test/resources/Feature",
+        glue = "Definitions",
         tags = "@Prueba1",
         plugin = {
                 "pretty",
                 "json:target/cucumber-report/cucumber.json"
         },
-
         monochrome = true
 )
 
@@ -24,10 +24,8 @@ public class RunCucumberTest {
                 try {
                         System.out.println("Generando Reporte...");
 
-
                         String os = System.getProperty("os.name").toLowerCase();
                         String[] cmd;
-
 
                         if (os.contains("win")) {
                                 cmd = new String[]{"cmd.exe", "/c", "npm run report"};
@@ -61,6 +59,7 @@ public class RunCucumberTest {
         private static void abrirReporteAutomaticamente() throws Exception {
                 String os = System.getProperty("os.name").toLowerCase();
 
+
                 // Ruta del archivo HTML del reporte (ajústala según tu proyecto)
                 String rutaReporte = "target/cucumber-html-report/index.html";
 
@@ -76,5 +75,5 @@ public class RunCucumberTest {
 
                 System.out.println("Reporte abierto automáticamente 🔥");
         }
-
 }
+
