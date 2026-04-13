@@ -96,4 +96,3 @@ Feature: Registrar Formulario Novus Technology
       When ingreso los datos del formulario desde el archivo CSV
       And doy click en enviar
       Then se procesan correctamente todos los registros del csv
-@prueba7
