@@ -59,8 +59,8 @@ public class BalancePage {
     public void validarNumeroTarjeta(){
         wait.until(ExpectedConditions.visibilityOf(validarNumeroTarjeta));
         Assert.assertEquals(DatosTarjetaPage.tarjeta, validarNumeroTarjeta.getText());
-        System.out.println("el nombre actual es: " + validarNumeroTarjeta.getText());
-        System.out.println("el nombre esperado es: " + DatosTarjetaPage.tarjeta);
+        System.out.println("el numero de tarjeta actual es: " + validarNumeroTarjeta.getText());
+        System.out.println("el numero de tarjeta esperado es: " + DatosTarjetaPage.tarjeta);
     }
 
     public void validarMes(){
@@ -68,21 +68,21 @@ public class BalancePage {
         String mesActual = normalizarMes(validarMes.getText());
         String mesEsperado = normalizarMes(DatosTarjetaPage.mes);
         Assert.assertEquals(mesEsperado, mesActual);
-        System.out.println("el nombre actual es: " + mesActual);
-        System.out.println("el nombre esperado es: " + mesEsperado);
+        System.out.println("el mes actual es: " + mesActual);
+        System.out.println("el mes esperado es: " + mesEsperado);
     }
 
     public void validarAnio(){
         wait.until(ExpectedConditions.visibilityOf(validarAnio));
         Assert.assertEquals(DatosTarjetaPage.anio, validarAnio.getText());
-        System.out.println("el nombre actual es: " + validarAnio.getText());
-        System.out.println("el nombre esperado es: " + DatosTarjetaPage.anio);
+        System.out.println("el año actual es: " + validarAnio.getText());
+        System.out.println("el año esperado es: " + DatosTarjetaPage.anio);
     }
     public void validarCCV(){
         wait.until(ExpectedConditions.visibilityOf(validarCCV));
         Assert.assertEquals(DatosTarjetaPage.cvv, validarCCV.getText());
-        System.out.println("el nombre actual es: " + validarCCV.getText());
-        System.out.println("el nombre esperado es: " + DatosTarjetaPage.cvv);
+        System.out.println("el CVV actual es: " + validarCCV.getText());
+        System.out.println("el CVV esperado es: " + DatosTarjetaPage.cvv);
     }
 
     public void validarNumeroOrden(){
@@ -90,8 +90,8 @@ public class BalancePage {
         String numeroOrdenActual = normalizarNumero(validarNumeroOrden.getText());
         String numeroOrdenEsperado = normalizarNumero(PaymentPage.numeroOrden);
         Assert.assertEquals(numeroOrdenEsperado, numeroOrdenActual);
-        System.out.println("el nombre actual es: " + numeroOrdenActual);
-        System.out.println("el nombre esperado es: " + numeroOrdenEsperado);
+        System.out.println("el numero de orden actual es: " + numeroOrdenActual);
+        System.out.println("el numero de orden esperado es: " + numeroOrdenEsperado);
     }
 
     private String normalizarMes(String valorMes) {

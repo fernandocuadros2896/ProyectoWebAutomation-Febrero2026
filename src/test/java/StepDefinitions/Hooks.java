@@ -18,7 +18,7 @@ public class Hooks {
         // cuando esta en true trabaja por detras no se ve
         // si quieres se levante tiene que estar en false
 
-        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
         // Opciones recomendadas
         ChromeOptions options = new ChromeOptions();
         if (headless) {
