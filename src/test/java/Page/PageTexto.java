@@ -42,6 +42,12 @@ public class PageTexto {
 
     // crear metodos
 
+    public void validarDatos(){
+        wait.until(ExpectedConditions.visibilityOf(nombreModal));
+        nombreModal.isDisplayed();
+        apellidoModal.isDisplayed();
+    }
+
     public void ingresarNombre(){
 
         name.sendKeys("Fernando Roger");
@@ -107,21 +113,30 @@ public class PageTexto {
     public void validarNombre(){
         wait.until(ExpectedConditions.visibilityOf(nombreModal));
         Assert.assertEquals(nombreModal.getText(), Snombre);
+        System.out.println("el nombre actual es: " + nombreModal.getText());
+        System.out.println("el nombre esperado es: " + Snombre);
     }
 
     public void validarApellido(){
-        wait.until(ExpectedConditions.visibilityOf(nombreModal));
+        wait.until(ExpectedConditions.visibilityOf(apellidoModal));
         Assert.assertEquals(apellidoModal.getText(),Sapellido);
+        System.out.println("el apellido actual es: " + apellidoModal.getText());
+        System.out.println("el apellido esperado es: " + Sapellido);
+
     }
 
     public void validarNombre(String nombre){
         wait.until(ExpectedConditions.visibilityOf(nombreModal));
         Assert.assertEquals(nombreModal.getText(), nombre);
+        System.out.println("el nombre actual es: " + nombreModal.getText());
+        System.out.println("el nombre esperado es: " + Snombre);
     }
 
     public void validarApellido(String lastName){
-        wait.until(ExpectedConditions.visibilityOf(nombreModal));
+        wait.until(ExpectedConditions.visibilityOf(apellidoModal));
         Assert.assertEquals(apellidoModal.getText(),lastName);
+        System.out.println("el apellido actual es: " + apellidoModal.getText());
+        System.out.println("el apellido esperado es: " + Sapellido);
     }
 
 }

@@ -1,9 +1,6 @@
 package StepDefinitions;
 
-import Page.DatosTarjetaPage;
-import Page.HomePage;
-import Page.MenuPage;
-import Page.UtilitariosPage;
+import Page.*;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -18,12 +15,16 @@ public class CarritoDefinition {
     UtilitariosPage utilitario;
     HomePage home;
     DatosTarjetaPage datos;
+    FormularioPagoPage ingresaDatos;
+    PaymentPage pago;
 
     public CarritoDefinition() {
         menu = new MenuPage(Hooks.driver);
         datos= new DatosTarjetaPage(Hooks.driver);
         utilitario= new UtilitariosPage(Hooks.driver);
         home= new HomePage(Hooks.driver);
+        ingresaDatos= new FormularioPagoPage(Hooks.driver);
+        pago = new PaymentPage(Hooks.driver);
 
     }
 
@@ -71,36 +72,46 @@ public class CarritoDefinition {
 
     @And("ingresa el numero de tarjeta")
     public void ingresaElNumeroDeTarjeta() {
+        ingresaDatos.ingresarNumeroTarjeta();
 
     }
 
     @And("ingresa el numero de CVV")
     public void ingresaElNumeroDeCVV() {
+        ingresaDatos.ingresarCVV();
 
     }
 
     @And("ingresa el mes y año de vencimiento")
     public void ingresaElMesYAñoDeVencimiento() {
+        ingresaDatos.ingresarMes();
+        ingresaDatos.ingresarAnio();
 
     }
 
     @And("dar click en comprar")
     public void darClickEnComprar() {
+        ingresaDatos.clickBotonPagar();
 
     }
 
     @Then("visualiza un mensaje de compra exitosa")
     public void visualizaUnMensajeDeCompraExitosa() {
+        pago.validarPagoExitoso();
+
 
     }
 
     @And("el numero de orden de compra")
     public void elNumeroDeOrdenDeCompra() {
+        pago.CapturarOrden();
 
     }
 
     @And("da click en home")
     public void daClickEnHome() {
+        pago.ClickHome();
+        home.ValidarHome();
 
     }
 }

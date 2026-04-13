@@ -22,13 +22,20 @@ public class PaymentPage {
     //declar localizadores
     @FindBy(tagName = "h2") private WebElement txtPagoExitoso;
     @FindBy(xpath = "//td[2]/h3/strong") private WebElement txtOrder;
-    @FindBy(linkText = "Home") private WebElement btnHome;
+    @FindBy(xpath = "//a[@class='button special']") private WebElement btnHome;
 
     //crear metodos
 
-    public void  CapturarTxtPagoExitoso(){
-        wait.until(ExpectedConditions.visibilityOf(txtPagoExitoso));
-        txtPagoExitoso.isDisplayed();
-        System.out.println("el valo es " + txtPagoExitoso);
+    public void  validarPagoExitoso(){
+        wait.until(ExpectedConditions.visibilityOf(txtPagoExitoso)); //espera que el pago exitoso este cargada
+        txtPagoExitoso.isDisplayed(); // que exista en la pantalla
+        System.out.println("el texto de pago exitoso es  " + txtPagoExitoso.getText());
+    }
+    public void  CapturarOrden(){
+        txtOrder.getText() ;// obtiene el texto visible de un elemento web
+        System.out.println("el numero de orden de compra es  " + txtOrder.getText());
+    }
+    public void  ClickHome(){
+        btnHome.click();
     }
 }

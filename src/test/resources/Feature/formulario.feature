@@ -90,10 +90,9 @@ Feature: Registrar Formulario Novus Technology
       | Evelyn    | Francisco    | deporte    | masculino | 9876789657 | booking@test.com | ICA          | ICA    | WebElement Commands | C:\Users\FERNANDO\Downloads\prueba.pdf |
       | Pedro     | Bazan        | musica     | masculino | 9876789657 | booking@test.com | ICA          | ICA    | WebElement Commands | C:\Users\FERNANDO\Downloads\prueba.pdf |
 
-
+@Prueba6
     Scenario: Probar con carga desde CSV
       Given que ingreso a la web de Novus Technology
       When ingreso los datos del formulario desde el archivo CSV
-      And envio el formulario
-      Then se muestra un pop up con el mensaje
-      And doy click en close
+      And doy click en enviar
+      Then se procesan correctamente todos los registros del csv

@@ -12,7 +12,7 @@ public class DatosTarjetaPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    protected static String tarjeta;
+    protected  static String tarjeta;
     protected static String cvv;
     protected static String mes;
     protected static String anio;

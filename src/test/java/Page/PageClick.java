@@ -9,6 +9,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class PageClick {
     //Instanciar Wait y Driver
 
@@ -71,8 +75,28 @@ public class PageClick {
         }
     }
 
-    public void CargarDocumento() {
-        cargarDocumento.sendKeys("C:\\Users\\FERNANDO\\Downloads\\prueba.pdf");
+    public  File crearArchivoTemporal() throws IOException{
+        File tempFile= File.createTempFile("documento","pdf");
+
+        //contenido simulado se puede generar PDF real si se quiere
+
+        byte[] contenido = "Este es un archivo pdf simulado".getBytes();
+        try (FileOutputStream fos = new FileOutputStream(tempFile)){
+            fos.write(contenido);
+
+        }
+        return tempFile;
+
+    }
+
+    public void CargarDocumento() throws IOException {
+        //cuando cargas el documento de la ruta de tu proyecto
+       // cargarDocumento.sendKeys("C:\\Users\\FERNANDO\\Downloads\\prueba.pdf");
+
+        //cargar un documento temporal de memoria
+
+        File archivo = crearArchivoTemporal();
+        cargarDocumento.sendKeys(archivo.getAbsolutePath());
     }
 
     public void CargarDocumento(String document) {
