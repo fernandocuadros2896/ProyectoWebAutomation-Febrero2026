@@ -229,7 +229,8 @@ texto.apellidoModal();
 
     @And("valido que el nombre sea el mismo que se ingreso al inicio")
     public void validoQueElNombreSeaElMismoQueSeIngresoAlInicio() {
-      texto.validarNombre();
+
+        texto.validarNombre();
     }
 
     @And("valido que el apellido sea el mismo que se ingreso al inicio")
@@ -307,4 +308,8 @@ texto.apellidoModal();
     public void seProcesanCorrectamenteTodosLosRegistrosDelCsv() {
         Assert.assertTrue("No se procesaron registros desde el CSV", registrosProcesadosCSV > 0);
     }
+
+
+
+
 }

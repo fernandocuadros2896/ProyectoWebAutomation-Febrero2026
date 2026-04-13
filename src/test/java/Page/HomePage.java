@@ -45,6 +45,13 @@ public class HomePage {
         new Select(selectCantidad).selectByVisibleText(cantidad);
     }
 
+    public void SeleccionarCantidad(String amount) {
+        cantidad=amount;
+        new Select(selectCantidad).selectByVisibleText(cantidad);
+        System.out.println("la cantidad ingresada es: " + cantidad);
+
+    }
+
     public void ClickComprar() {
 
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", botonCompra);

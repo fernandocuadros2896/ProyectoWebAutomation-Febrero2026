@@ -12,12 +12,16 @@ public class PaymentPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+
+
     public PaymentPage(WebDriver d) {
         //instanciar el driver y el wait
         driver = d;
         wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
+
+    protected static String numeroOrden;
 
     //declar localizadores
     @FindBy(tagName = "h2") private WebElement txtPagoExitoso;
@@ -34,6 +38,8 @@ public class PaymentPage {
     public void  CapturarOrden(){
         txtOrder.getText() ;// obtiene el texto visible de un elemento web
         System.out.println("el numero de orden de compra es  " + txtOrder.getText());
+        numeroOrden=txtOrder.getText();
+
     }
     public void  ClickHome(){
         btnHome.click();
