@@ -138,7 +138,7 @@ public class Hooks {
         FailureContext.clear();
 
         boolean headless = Boolean.parseBoolean(
-                System.getProperty("headless", "false")
+                System.getProperty("headless", "true")
         );
 
         ChromeOptions options = new ChromeOptions();
