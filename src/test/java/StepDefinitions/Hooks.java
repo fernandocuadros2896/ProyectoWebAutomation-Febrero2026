@@ -16,7 +16,7 @@ public class Hooks {
         // Leer propiedad del sistema: -Dheadless=true  (por defecto true)
 
         // cuando esta en true trabaja por detras no se ve
-        // si quieres se levante tiene que estar en false
+        // si quieres se levante tiene que estar en false tyy
 
         boolean headless = Boolean.parseBoolean(System.getProperty("headless", "true"));
         // Opciones recomendadas
