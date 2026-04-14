@@ -4,7 +4,9 @@ import Page.PageBotones;
 import Page.PageClick;
 import Page.PageSeleccionar;
 import Page.PageTexto;
+import Support.DriverFactory;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -26,7 +28,7 @@ import java.util.Map;
 
 public class FormularioDefinitions {
 
-    WebDriver hooks = Hooks.driver;
+
     String ruta="src/test/resources/Data/data.csv";
     //llamamos la clase a utilizar
     PageTexto texto;
@@ -36,23 +38,22 @@ public class FormularioDefinitions {
     String URL_FORMULARIO = "https://novustechnology.pe/practice-form/";
     int registrosProcesadosCSV =0;
 
-
-    // Iniciar variables en el constructor
-    public FormularioDefinitions() {
+    @Before(order = 1)
+    public void init() {
+        WebDriver driver = DriverFactory.getDriver();
         // instaciar las clases
-        texto = new PageTexto(Hooks.driver);
-        click = new PageClick(Hooks.driver);
-        seleccionar = new PageSeleccionar(Hooks.driver);
-        boton = new PageBotones(Hooks.driver);
-
-
+        texto = new PageTexto(driver);
+        click = new PageClick(driver);
+        seleccionar = new PageSeleccionar(driver);
+        boton = new PageBotones(driver);
     }
+
 
     //Steps
     @Given("que ingreso a la web de Novus Technology")
     public void queIngresoALaWebDeNovusTechnology() {
 
-        Hooks.driver.get(URL_FORMULARIO);
+        DriverFactory.getDriver().get(URL_FORMULARIO);
     }
 
     @When("Ingreso el nombre")
@@ -296,7 +297,7 @@ texto.apellidoModal();
 
             //reinicio el formulario para envitar acumulacion de datos entre filas
 
-            Hooks.driver.get(URL_FORMULARIO);
+            DriverFactory.getDriver().get(URL_FORMULARIO);
 
 
 

@@ -1,7 +1,9 @@
 package StepDefinitions;
 
 import Page.*;
+import Support.DriverFactory;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -20,32 +22,36 @@ import java.util.Map;
 
 public class CarritoDefinition {
 
-    WebDriver hooks = Hooks.driver;
-    MenuPage menu;
-    UtilitariosPage utilitario;
-    HomePage home;
-    DatosTarjetaPage datos;
-    FormularioPagoPage ingresaDatos;
-    PaymentPage pago;
-    String ruta = "src/test/resources/Data/dataCarrito.csv";
+
+   private MenuPage menu;
+   private UtilitariosPage utilitario;
+   private HomePage home;
+   private DatosTarjetaPage datos;
+   private FormularioPagoPage ingresaDatos;
+   private PaymentPage pago;
+   private String ruta = "src/test/resources/Data/dataCarrito.csv";
 
     BalancePage balance;
-
-
-    public CarritoDefinition() {
-        menu = new MenuPage(Hooks.driver);
-        datos= new DatosTarjetaPage(Hooks.driver);
-        utilitario= new UtilitariosPage(Hooks.driver);
-        home= new HomePage(Hooks.driver);
-        ingresaDatos= new FormularioPagoPage(Hooks.driver);
-        pago = new PaymentPage(Hooks.driver);
-        balance = new BalancePage(Hooks.driver);
-
+    //iniciar variables en el constructor para el definitions
+    @Before(order = 1)
+    public void init() {
+        WebDriver driver = DriverFactory.getDriver();
+        menu = new MenuPage(driver);
+        datos= new DatosTarjetaPage(driver);
+        utilitario= new UtilitariosPage(driver);
+        home= new HomePage(driver);
+        ingresaDatos= new FormularioPagoPage(driver);
+        pago = new PaymentPage(driver);
+        balance = new BalancePage(driver);
     }
+
+
+
 
     @Given("el usuario ingresa a la pagina de productos")
     public void elUsuarioIngresaALaPaginaDeProductos() {
-        Hooks.driver.get("https://demo.guru99.com/payment-gateway/index.php");
+        DriverFactory.getDriver().get("https://demo.guru99.com/payment-gateway/index.php");
+
 
     }
 
